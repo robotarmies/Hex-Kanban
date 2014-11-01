@@ -38,6 +38,10 @@ function importCurrentWork(json) {
         clone = $('.task-template').clone().removeClass('hidden').removeClass('task-template');
         clone.children('.timeline-panel')
             .children('.timeline-heading')
+            .children('.task-reference')
+            .html('<small class="text-muted"><a href="https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref+'" target="_blank">AtTask Reference</a></small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
             .children('.task-title')
             .html(task_title);
         clone.children('.timeline-panel')
