@@ -1,50 +1,330 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <style>
-        body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hex Dashboard</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="css/overrides.css" rel="stylesheet">
+
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="#">Project name</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
+
+<div id="wrapper">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<!-- Header -->
+<div class="navbar-header">
+    <a class="navbar-brand" href="index.html">Hex Dashboard</a>
+</div>
+<!-- End Header -->
+
+<!-- Sidebar -->
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li>
+                <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+            <li>
+                <a class="active" href="index.html"><i class="fa fa-tasks fa-fw"></i> Backlog</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End Sidebar-->
+</nav>
+<!-- End Navigation -->
+
+<div id="page-wrapper">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Hex Dashboard</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-spinner fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">26</div>
+                        <div>Tasks in Progress</div>
+                    </div>
+                </div>
             </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">12</div>
+                        <div>Tasks in Backlog</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-check fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">124</div>
+                        <div>Tasks Completed</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>Defects in Backlog</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+<div class="col-lg-8">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-clock-o fa-fw"></i> Tasks in Progress
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <ul class="timeline">
+            <li>
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">123456 - Task Number One</h4>
+                        <p><small class="text-muted"><a href="www.google.com">AtTask Reference</a></small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Developer: Chris</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Picked Up: 12/31/2014</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Deadline: 12/31/2014</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Some status update</p>
+                    </div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">123456 - Task Number One</h4>
+                        <p><small class="text-muted"><a href="www.google.com">AtTask Reference</a></small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Developer: Chris</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Picked Up: 12/31/2014</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Deadline: 12/31/2014</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Some status update</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">123456 - Task Number One</h4>
+                        <p><small class="text-muted"><a href="www.google.com">AtTask Reference</a></small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Developer: Chris</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Picked Up: 12/31/2014</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Deadline: 12/31/2014</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Some status update</p>
+                    </div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">123456 - Task Number One</h4>
+                        <p><small class="text-muted"><a href="www.google.com">AtTask Reference</a></small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Developer: Chris</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Picked Up: 12/31/2014</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Deadline: 12/31/2014</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Some status update</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">123456 - Task Number One</h4>
+                        <p><small class="text-muted"><a href="www.google.com">AtTask Reference</a></small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Developer: Chris</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Picked Up: 12/31/2014</small>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> Deadline: 12/31/2014</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Some status update</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.col-lg-8 -->
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Upcoming Milestones
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-clock-o fa-fw"></i> Milestone 1
+                                    <span class="pull-right text-muted small"><em>12/31/2014</em>
+                                    </span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-clock-o fa-fw"></i> Milestone 2
+                                    <span class="pull-right text-muted small"><em>12/31/2014</em>
+                                    </span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-clock-o fa-fw"></i> Milestone 3
+                                    <span class="pull-right text-muted small"><em>12/31/2014</em>
+                                    </span>
+                </a>
+            </div>
+            <!-- /.list-group -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+<!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-    <div class="container">
+</div>
+<!-- /#wrapper -->
 
-        <h1>Bootstrap starter template</h1>
-        <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+<!-- jQuery -->
+<script src="js/jquery-1.11.1.min.js"></script>
 
-    </div> <!-- /container -->
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 
+<!--&lt;!&ndash; Metis Menu Plugin JavaScript &ndash;&gt;-->
+<!--<script src="js/plugins/metisMenu/metisMenu.min.js"></script>-->
 
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/spreadsheet.js"></script>
-    <!-- Load in Current Work tab with callback -->
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/1/public/values?alt=json-in-script&amp;callback=importCurrentWork"></script>
-    <!-- Load in Backlog tab with callback -->
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/2/public/values?alt=json-in-script&amp;callback=importBacklog"></script>
-    <!-- Load in Data Validation tab with callback -->
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/3/public/values?alt=json-in-script&amp;callback=importDataValidation"></script>
+<!--&lt;!&ndash; Morris Charts JavaScript &ndash;&gt;-->
+<!--<script src="js/plugins/morris/raphael.min.js"></script>-->
+<!--<script src="js/plugins/morris/morris.min.js"></script>-->
+<!--<script src="js/plugins/morris/morris-data.js"></script>-->
+
+<!-- Custom Theme JavaScript -->
+<!--<script src="js/sb-admin-2.js"></script>-->
+
 </body>
+
 </html>
