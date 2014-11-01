@@ -63,11 +63,11 @@ function importCurrentWork(json) {
         clone.children('.timeline-panel')
             .children('.timeline-heading')
             .children('.task-status')
-            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+status+'</small>');
+            .html('<small class="text-muted"><i class="fa fa-cog"></i>'+status+'</small>');
         clone.children('.timeline-panel')
             .children('.timeline-heading')
             .children('.task-developer')
-            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+developer+'</small>');
+            .html('<small class="text-muted"><i class="fa fa-user"></i>'+developer+'</small>');
         clone.children('.timeline-panel')
             .children('.timeline-heading')
             .children('.task-added')
