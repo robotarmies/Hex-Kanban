@@ -8,6 +8,7 @@ var statuses = [];
 var backlog = [];
 var work = [];
 var milestones = [];
+var roadblocks = [];
 
 function importCurrentWork(json) {
     // Read json into array
@@ -26,6 +27,13 @@ function importCurrentWork(json) {
             'ui_hours': obj.gsx$ui.$t,
             'update': obj.gsx$update.$t
         });
+
+        if (obj.gsx$status.$t === 'Roadblocked') {
+            roadblocks.push({
+                'taskname': obj.gsx$taskname.$t,
+                'attask_ref': obj.gsx$taskref.$t
+            });
+        }
     });
 
     // Update panel numbers for number of tasks and number completed
@@ -37,13 +45,13 @@ function importCurrentWork(json) {
     // Generate tasks in timeline format
     var count=1;
     $(work).each(function() {
-        task_title = this.attask_ref + " - " + this.taskname;
-        developer = " Developer: " + this.developer;
-        picked_up = " Picked Up: " + this.date_added;
-        deadline = " Deadline: " + this.deadline;
-        status = " Status: " + this.status;
-        update = this.update;
-        clone = $('.task-template').clone().removeClass('hidden').removeClass('task-template');
+        var task_title = this.attask_ref + " - " + this.taskname;
+        var developer = " Developer: " + this.developer;
+        var picked_up = " Picked Up: " + this.date_added;
+        var deadline = " Deadline: " + this.deadline;
+        var status = " Status: " + this.status;
+        var update = this.update;
+        var clone = $('.task-template').clone().removeClass('hidden').removeClass('task-template');
         clone.children('.timeline-panel')
             .children('.timeline-heading')
             .children('.task-reference')
@@ -80,6 +88,14 @@ function importCurrentWork(json) {
         }
         $('.timeline').append(clone);
         count++;
+    });
+
+    // Generate roadblocks in the roadblocks panel
+    $(roadblocks).each(function () {
+        var clone = $('.roadblock-template').clone().removeClass('hidden').removeClass('roadblock-template')
+            .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
+        clone.children('.roadblock-name').html(this.taskname);
+        $('.gdx-roadblock').append(clone);
     });
 }
 
@@ -128,9 +144,7 @@ function importMilestones(json) {
 
     // Generate milestones in the milestone panel
     $(milestones).each(function () {
-        name = this.name;
-        date = this.date;
-        clone = $('.milestone-template').clone().removeClass('hidden').removeClass('milestone-template');
+        var clone = $('.milestone-template').clone().removeClass('hidden').removeClass('milestone-template');
         clone.children('.milestone-name').html(this.name);
         clone.children('.milestone-date')
             .children('em')

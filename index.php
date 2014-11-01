@@ -84,6 +84,7 @@
 <div class="row">
     <?php require_once "blocks/work.html" ?>
     <?php require_once "blocks/milestones.html" ?>
+    <?php require_once "blocks/roadblocks.html" ?>
 </div>
 <!-- /.col-lg-4 -->
 </div>
