@@ -60,7 +60,7 @@
                 <a class="active" href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a class="active" href="index.php"><i class="fa fa-tasks fa-fw"></i> Backlog</a>
+                <a class="active" href="https://docs.google.com/a/blueacorn.com/spreadsheets/d/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/edit#gid=754151978" target="_blank"><i class="fa fa-tasks fa-fw"></i> Backlog</a>
             </li>
         </ul>
     </div>
