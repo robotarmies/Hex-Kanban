@@ -17,7 +17,8 @@ function importCurrentWork(json) {
             'qa_hours': obj.gsx$qa.$t,
             'taskname': obj.gsx$taskname.$t,
             'attask_ref': obj.gsx$taskref.$t,
-            'ui_hours': obj.gsx$ui.$t
+            'ui_hours': obj.gsx$ui.$t,
+            'update': obj.gsx$update.$t
         });
     });
 
@@ -25,6 +26,49 @@ function importCurrentWork(json) {
     $('.gdx-num-completed').html(work.filter(function(task) {
         return task.status === 'Completed';
     }).length);
+
+    var count=1;
+    $(work).each(function() {
+        task_title = this.attask_ref + " - " + this.taskname;
+        developer = " Developer: " + this.developer;
+        picked_up = " Picked Up: " + this.date_added;
+        deadline = " Deadline: " + this.deadline;
+        status = " Status: " + this.status;
+        update = this.update;
+        clone = $('.task-template').clone().removeClass('hidden').removeClass('task-template');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-title')
+            .html(task_title);
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-status')
+            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+status+'</small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-developer')
+            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+developer+'</small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-added')
+            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+picked_up+'</small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-deadline')
+            .html('<small class="text-muted"><i class="fa fa-clock-o"></i>'+deadline+'</small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-body')
+            .children('p')
+            .html(update);
+        if (count % 2 == 0) {
+            clone.addClass('timeline-inverted');
+        }
+        if (this.status == "Completed") {
+            clone.children('.timeline-badge').addClass('success');
+        }
+        $('.timeline').append(clone);
+        count++;
+    });
 }
 
 function importBacklog(json) {
