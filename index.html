@@ -1,12 +1,50 @@
 <html>
 <head>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/spreadsheet.js"></script>
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/1/public/values?alt=json-in-script&amp;callback=importCurrentWork"></script>
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/2/public/values?alt=json-in-script&amp;callback=importBacklog"></script>
-    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/3/public/values?alt=json-in-script&amp;callback=importDataValidation"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Project name</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Bootstrap starter template</h1>
+        <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+
+    </div> <!-- /container -->
+
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/spreadsheet.js"></script>
+    <!-- Load in Current Work tab with callback -->
+    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/1/public/values?alt=json-in-script&amp;callback=importCurrentWork"></script>
+    <!-- Load in Backlog tab with callback -->
+    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/2/public/values?alt=json-in-script&amp;callback=importBacklog"></script>
+    <!-- Load in Data Validation tab with callback -->
+    <script src="http://spreadsheets.google.com/feeds/list/1gA8cGXgSgdkI_TDwXYRo5wU1m1eXA2OU49kyKrO-C9g/3/public/values?alt=json-in-script&amp;callback=importDataValidation"></script>
 </body>
 </html>
