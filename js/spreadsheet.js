@@ -10,6 +10,7 @@ var work = [];
 var milestones = [];
 
 function importCurrentWork(json) {
+    // Read json into array
     $(json.feed.entry).each(function(index, obj) {
         work.push({
             'client': obj.gsx$client.$t,
@@ -27,11 +28,13 @@ function importCurrentWork(json) {
         });
     });
 
+    // Update panel numbers for number of tasks and number completed
     $('.gdx-num-tasks').html(work.length);
     $('.gdx-num-completed').html(work.filter(function(task) {
         return task.status === 'Completed';
     }).length);
 
+    // Generate tasks in timeline format
     var count=1;
     $(work).each(function() {
         task_title = this.attask_ref + " - " + this.taskname;
@@ -81,6 +84,7 @@ function importCurrentWork(json) {
 }
 
 function importBacklog(json) {
+    // Read json into an array
     $(json.feed.entry).each(function(index, obj) {
         if (obj.gsx$taskname.$t !== '') {
             backlog.push({
@@ -97,6 +101,7 @@ function importBacklog(json) {
         }
     });
 
+    // Update panel with backlog and defect numbers
     $('.gdx-num-backlog').html(backlog.length);
     $('.gdx-num-defects').html(backlog.filter(function(task) {
         return task.is_defect === 'Yes';
@@ -104,6 +109,7 @@ function importBacklog(json) {
 }
 
 function importDataValidation(json) {
+    // Read json into an array
     $(json.feed.entry).each(function(index, obj) {
         if (obj.gsx$clients.$t !== '') clients.push(obj.gsx$clients.$t);
         if (obj.gsx$developers.$t !== '') developers.push(obj.gsx$developers.$t);
@@ -112,6 +118,7 @@ function importDataValidation(json) {
 }
 
 function importMilestones(json) {
+    // Read json into an array
     $(json.feed.entry).each(function(index, obj) {
         milestones.push({
             'name': obj.gsx$milestonename.$t,
@@ -119,6 +126,7 @@ function importMilestones(json) {
         });
     });
 
+    // Generate milestones in the milestone panel
     $(milestones).each(function () {
         name = this.name;
         date = this.date;
