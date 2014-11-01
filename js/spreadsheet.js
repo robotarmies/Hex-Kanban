@@ -1,8 +1,13 @@
+setTimeout(function(){
+    window.location.reload(1);
+}, 10000);
+
 var clients = [];
 var developers = [];
 var statuses = [];
 var backlog = [];
 var work = [];
+var milestones = [];
 
 function importCurrentWork(json) {
     $(json.feed.entry).each(function(index, obj) {
@@ -103,5 +108,25 @@ function importDataValidation(json) {
         if (obj.gsx$clients.$t !== '') clients.push(obj.gsx$clients.$t);
         if (obj.gsx$developers.$t !== '') developers.push(obj.gsx$developers.$t);
         if (obj.gsx$statuses.$t !== '') statuses.push(obj.gsx$statuses.$t);
+    });
+}
+
+function importMilestones(json) {
+    $(json.feed.entry).each(function(index, obj) {
+        milestones.push({
+            'name': obj.gsx$milestonename.$t,
+            'date': obj.gsx$date.$t
+        });
+    });
+
+    $(milestones).each(function () {
+        name = this.name;
+        date = this.date;
+        clone = $('.milestone-template').clone().removeClass('hidden').removeClass('milestone-template');
+        clone.children('.milestone-name').html(this.name);
+        clone.children('.milestone-date')
+            .children('em')
+            .html(this.date);
+        $('.gdx-milestones').append(clone);
     });
 }
