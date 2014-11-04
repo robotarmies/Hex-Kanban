@@ -9,6 +9,11 @@ var backlog = [];
 var work = [];
 var milestones = [];
 var roadblocks = [];
+var planningBacklog = [];
+var brds = [];
+var brd_approvals = [];
+var roms = [];
+var rom_approvals = [];
 
 function importCurrentWork(json) {
     // Read json into array
@@ -86,7 +91,7 @@ function importCurrentWork(json) {
         if (this.status == "Completed") {
             clone.children('.timeline-badge').addClass('success');
         }
-        $('.timeline').append(clone);
+        $('.timeline-work').append(clone);
         count++;
     });
 
@@ -124,8 +129,79 @@ function importBacklog(json) {
     }).length);
 }
 
-function importPlanningBacklog(jsos) {
-    console.log('Import Planning Backlog');
+function importPlanningBacklog(json) {
+    // Read json into an array
+    $(json.feed.entry).each(function(index, obj) {
+        if (obj.gsx$taskname.$t !== '') {
+            planningBacklog.push({
+                'client': obj.gsx$client.$t,
+                'taskname': obj.gsx$taskname.$t,
+                'attask_ref': obj.gsx$taskref.$t,
+                'status': obj.gsx$status.$t,
+            });
+        }
+
+        switch (obj.gsx$status.$t) {
+            case 'BRD':
+                brds.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'BRD Approval':
+                brd_approvals.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'ROM':
+                roms.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'ROM Approval':
+                rom_approvals.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+        }
+    });
+
+    // Update panel with backlog and defect numbers
+    $('.gdx-num-roms').html(roms.length);
+    $('.gdx-num-rom-approvals').html(rom_approvals.length);
+    $('.gdx-num-brds').html(brds.length);
+    $('.gdx-num-brd-approvals').html(brd_approvals.length);
+
+    // Generate tasks in timeline format
+    var count=1;
+    $(planningBacklog).each(function() {
+        var task_title = this.attask_ref + " - " + this.taskname;
+        var status = " Status: " + this.status;
+        var clone = $('.task-template').clone().removeClass('hidden').removeClass('task-template');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-reference')
+            .html('<small class="text-muted"><a href="https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref+'" target="_blank">AtTask Reference</a></small>');
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-title')
+            .html(task_title);
+        clone.children('.timeline-panel')
+            .children('.timeline-heading')
+            .children('.task-status')
+            .html('<small class="text-muted"><i class="fa fa-cog"></i>'+status+'</small>');
+        if (count % 2 == 0) {
+            clone.addClass('timeline-inverted');
+        }
+        if (this.status == "Ready for EST") {
+            clone.children('.timeline-badge').addClass('success');
+        }
+        $('.timeline-planning').append(clone);
+        count++;
+    });
 }
 
 function importDataValidation(json) {
