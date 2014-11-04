@@ -41,6 +41,13 @@ function importCurrentWork(json) {
         }
     });
 
+    // Sort work
+    work.sort(function(task1, task2) {
+        task1 = (new Date(task1.deadline).getTime()/1000);
+        task2 = (new Date(task2.deadline).getTime()/1000);
+        return task1 - task2;
+    });
+
     // Update panel numbers for number of tasks and number completed
     $('.gdx-num-tasks').html(work.length);
     $('.gdx-num-completed').html(work.filter(function(task) {
