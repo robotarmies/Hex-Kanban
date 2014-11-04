@@ -124,6 +124,10 @@ function importBacklog(json) {
     }).length);
 }
 
+function importPlanningBacklog(jsos) {
+    console.log('Import Planning Backlog');
+}
+
 function importDataValidation(json) {
     // Read json into an array
     $(json.feed.entry).each(function(index, obj) {
