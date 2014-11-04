@@ -1,6 +1,6 @@
 setTimeout(function(){
     window.location.reload(1);
-}, 10000);
+}, 600000);
 
 var clients = [];
 var developers = [];
