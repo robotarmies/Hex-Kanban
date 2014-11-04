@@ -81,13 +81,13 @@
 </div>
 <!-- /.row -->
 <div class="row">
-    <?php require_once "blocks/panel.html" ?>
+    <?php require_once "blocks/planning/panel.html" ?>
 </div>
 <!-- /.row -->
 <div class="row">
-    <?php require_once "blocks/work.html" ?>
-    <?php require_once "blocks/milestones.html" ?>
-    <?php require_once "blocks/roadblocks.html" ?>
+    <?php require_once "blocks/planning/work.html" ?>
+    <?php require_once "blocks/planning/milestones.html" ?>
+    <?php require_once "blocks/planning/roadblocks.html" ?>
 </div>
 <!-- /.col-lg-4 -->
 </div>
