@@ -14,31 +14,38 @@ var brds = [];
 var brd_approvals = [];
 var roms = [];
 var rom_approvals = [];
+var completed = [];
 
 function importCurrentWork(json) {
     // Read json into array
     $(json.feed.entry).each(function(index, obj) {
-        work.push({
-            'client': obj.gsx$client.$t,
-            'date_added': obj.gsx$dateadded.$t,
-            'days_to_completion': obj.gsx$daystocompletion.$t,
-            'deadline': obj.gsx$deadline.$t,
-            'developer': obj.gsx$developer.$t,
-            'status': obj.gsx$status.$t,
-            'dev_hours': obj.gsx$dev.$t,
-            'qa_hours': obj.gsx$qa.$t,
-            'taskname': obj.gsx$taskname.$t,
-            'attask_ref': obj.gsx$taskref.$t,
-            'ui_hours': obj.gsx$ui.$t,
-            'update': obj.gsx$update.$t
-        });
-
         if (obj.gsx$status.$t === 'Roadblocked') {
             roadblocks.push({
                 'taskname': obj.gsx$taskname.$t,
                 'attask_ref': obj.gsx$taskref.$t
             });
+        } else if (obj.gsx$status.$t === 'Completed') {
+            completed.push({
+                'taskname': obj.gsx$taskname.$t,
+                'attask_ref': obj.gsx$taskref.$t
+            });
+        } else {
+            work.push({
+                'client': obj.gsx$client.$t,
+                'date_added': obj.gsx$dateadded.$t,
+                'days_to_completion': obj.gsx$daystocompletion.$t,
+                'deadline': obj.gsx$deadline.$t,
+                'developer': obj.gsx$developer.$t,
+                'status': obj.gsx$status.$t,
+                'dev_hours': obj.gsx$dev.$t,
+                'qa_hours': obj.gsx$qa.$t,
+                'taskname': obj.gsx$taskname.$t,
+                'attask_ref': obj.gsx$taskref.$t,
+                'ui_hours': obj.gsx$ui.$t,
+                'update': obj.gsx$update.$t
+            });
         }
+
     });
 
     // Sort work
@@ -50,9 +57,7 @@ function importCurrentWork(json) {
 
     // Update panel numbers for number of tasks and number completed
     $('.gdx-num-tasks').html(work.length);
-    $('.gdx-num-completed').html(work.filter(function(task) {
-        return task.status === 'Completed';
-    }).length);
+    $('.gdx-num-completed').html(completed.length);
 
     // Generate tasks in timeline format
     var count=1;
