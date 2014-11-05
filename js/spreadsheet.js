@@ -102,6 +102,10 @@ function importCurrentWork(json) {
         }
         if (this.status == "Completed") {
             clone.children('.timeline-badge').addClass('success');
+        } else if ((new Date(this.deadline).getTime()/1000) < (new Date().getTime()/1000) && this.status !== 'UAT') {
+            clone.children('.timeline-badge').addClass('danger');
+        } else if (this.status=="UAT") {
+            clone.children('.timeline-badge').addClass('primary');
         }
         $('.timeline-work').append(clone);
         count++;
