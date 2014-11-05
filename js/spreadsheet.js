@@ -15,37 +15,54 @@ var brd_approvals = [];
 var roms = [];
 var rom_approvals = [];
 var completed = [];
+var qa_local = [];
+var qa_staging = [];
 
 function importCurrentWork(json) {
     // Read json into array
     $(json.feed.entry).each(function(index, obj) {
-        if (obj.gsx$status.$t === 'Roadblocked') {
-            roadblocks.push({
-                'taskname': obj.gsx$taskname.$t,
-                'attask_ref': obj.gsx$taskref.$t
-            });
-        } else if (obj.gsx$status.$t === 'Completed') {
-            completed.push({
-                'taskname': obj.gsx$taskname.$t,
-                'attask_ref': obj.gsx$taskref.$t
-            });
-        } else {
-            work.push({
-                'client': obj.gsx$client.$t,
-                'date_added': obj.gsx$dateadded.$t,
-                'days_to_completion': obj.gsx$daystocompletion.$t,
-                'deadline': obj.gsx$deadline.$t,
-                'developer': obj.gsx$developer.$t,
-                'status': obj.gsx$status.$t,
-                'dev_hours': obj.gsx$dev.$t,
-                'qa_hours': obj.gsx$qa.$t,
-                'taskname': obj.gsx$taskname.$t,
-                'attask_ref': obj.gsx$taskref.$t,
-                'ui_hours': obj.gsx$ui.$t,
-                'update': obj.gsx$update.$t
-            });
+        switch (obj.gsx$status.$t) {
+            case 'Roadblocked':
+                roadblocks.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'Completed':
+                completed.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'QA Local':
+                qa_local.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'QA Staging':
+                qa_staging.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            default:
+                work.push({
+                    'client': obj.gsx$client.$t,
+                    'date_added': obj.gsx$dateadded.$t,
+                    'days_to_completion': obj.gsx$daystocompletion.$t,
+                    'deadline': obj.gsx$deadline.$t,
+                    'developer': obj.gsx$developer.$t,
+                    'status': obj.gsx$status.$t,
+                    'dev_hours': obj.gsx$dev.$t,
+                    'qa_hours': obj.gsx$qa.$t,
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t,
+                    'ui_hours': obj.gsx$ui.$t,
+                    'update': obj.gsx$update.$t
+                });
+                break;
         }
-
     });
 
     // Sort work
@@ -117,6 +134,22 @@ function importCurrentWork(json) {
             .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
         clone.children('.roadblock-name').html(this.taskname);
         $('.gdx-roadblock').append(clone);
+    });
+
+    // Generate qa local panel
+    $(qa_local).each(function () {
+        var clone = $('.qa-local-template').clone().removeClass('hidden').removeClass('qa-local-template')
+            .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
+        clone.children('.qa-local-name').html(this.taskname);
+        $('.gdx-qa-local').append(clone);
+    });
+
+    // Generate qa staging panel
+    $(qa_staging).each(function () {
+        var clone = $('.qa-staging-template').clone().removeClass('hidden').removeClass('qa-staging-template')
+            .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
+        clone.children('.qa-staging-name').html(this.taskname);
+        $('.gdx-qa-staging').append(clone);
     });
 }
 

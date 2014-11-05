@@ -88,6 +88,7 @@
     <?php require_once "blocks/dev/work.html" ?>
     <?php require_once "blocks/dev/milestones.html" ?>
     <?php require_once "blocks/dev/roadblocks.html" ?>
+    <?php require_once "blocks/dev/qa.html" ?>
 </div>
 <!-- /.col-lg-4 -->
 </div>
