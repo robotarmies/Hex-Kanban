@@ -17,6 +17,7 @@ var rom_approvals = [];
 var completed = [];
 var qa_local = [];
 var qa_staging = [];
+var uat = [];
 
 function importCurrentWork(json) {
     // Read json into array
@@ -42,6 +43,12 @@ function importCurrentWork(json) {
                 break;
             case 'QA Staging':
                 qa_staging.push({
+                    'taskname': obj.gsx$taskname.$t,
+                    'attask_ref': obj.gsx$taskref.$t
+                });
+                break;
+            case 'UAT':
+                uat.push({
                     'taskname': obj.gsx$taskname.$t,
                     'attask_ref': obj.gsx$taskref.$t
                 });
@@ -121,9 +128,8 @@ function importCurrentWork(json) {
             clone.children('.timeline-badge').addClass('success');
         } else if ((new Date(this.deadline).getTime()/1000) < (new Date().getTime()/1000) && this.status !== 'UAT') {
             clone.children('.timeline-badge').addClass('danger');
-        } else if (this.status=="UAT") {
-            clone.children('.timeline-badge').addClass('primary');
         }
+        
         $('.timeline-work').append(clone);
         count++;
     });
@@ -150,6 +156,14 @@ function importCurrentWork(json) {
             .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
         clone.children('.qa-staging-name').html(this.taskname);
         $('.gdx-qa-staging').append(clone);
+    });
+
+    // Generate uat panel
+    $(uat).each(function () {
+        var clone = $('.uat-template').clone().removeClass('hidden').removeClass('uat-template')
+            .attr('href','https://blueacorn.attask-ondemand.com/task/view?ID='+this.attask_ref);
+        clone.children('.uat-name').html(this.taskname);
+        $('.gdx-uat').append(clone);
     });
 }
 
